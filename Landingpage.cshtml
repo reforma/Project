@@ -1,0 +1,67 @@
+﻿@{
+   Page.title = "Landingpage";
+   var db = Database.Open("ETS");
+var query = "SELECT * FROM Trolleys";
+var data = db.Query(query);
+var columns = new[]{"trolley"};
+var grid =new WebGrid(data, rowsPerPage: 15, ajaxUpdateContainerId: "grid", columnNames: columns);  
+}
+
+        <!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Electric Trolley Spares Stock Control </title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheet.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        </head>
+
+    <nav class "navbar">
+  <div class="container-fluid">
+        <div class="nav navbar-nav">
+        <a href="#"class="btn" role="button">Orders</a>
+        <a href="#" class="btn" role="button">Delivery</a>
+            <a href="Inventory.cshtml" class="btn" role="button">Inventory</a>
+        <a href="Alert.cshtml"class="btn" role="button">Alerts</a>
+    </ul>
+   </nav>
+  </div>
+  <div id="bdy">
+<h1 class="text-center">ETS Stock Control</h1>
+  </div>    
+ 
+        <div id="grid">
+         @grid.GetHtml(
+    displayHeader:false,
+     tableStyle: "webgrid-table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        selectedRowStyle: "webgrid-selected-row",
+        rowStyle: "webgrid-row-style",
+    columns: grid.Columns( 
+               grid.Column("Trolleydesc")
+
+     )
+)
+            </div>
+    @section script{
+<script type="text/javascript">
+    $(function(){
+        $('tbody tr').hover( function(){
+            $(this).toggleClass('clickable');
+        }).on('click', function(){
+            location.href = '/Parts/' + $(this).find('td:first').text();  
+        }); 
+    });
+</script>       
+}
+   
+</div>
+
+    </body>
+</html>

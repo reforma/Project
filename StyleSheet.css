@@ -1,0 +1,48 @@
+
+nav{border-bottom:solid;
+  border-color: blue; 
+}
+.webgrid-table{
+     display: table;
+    width: 90%;
+    table-layout: fixed; /* Magic rule */
+    border-collapse: collapse;
+     border-style: solid;
+    margin: 1em;
+    text-align: center;    
+}
+
+
+.webgrid-table td{
+    border-style: solid;
+    border-width: thin;
+    padding: 6px;
+}
+
+.clickable{
+    cursor: pointer;
+    background: #ffff99;
+}
+
+a{
+    color: #6078BF;
+}
+
+.webgrid-alternating-row{
+    background: #e6f4ff;
+}
+
+.webgrid-selected-row{
+    background: #ffff99;
+}
+
+.highlight{
+    background: #ffff99;
+}
+.webgrid-header th{
+    
+     border-style: solid;
+    margin: 1em;
+    text-align: center; 
+}
+

@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@Page.Title</title>
+         <script src="@Href("jquery-1.6.2.min.js")"text/javascript"></script>
+        <link href="@Href("stylesheet.css")" rel="stylesheet" type="text/css"/>
+         @RenderSection("script", required: false)
+    </head>
+    <body>
+        @RenderBody()
+    </body>
+</html>

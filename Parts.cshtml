@@ -1,0 +1,58 @@
+﻿@{
+     Page.Title = "Parts";
+   var db = Database.Open("ETS");
+var tquery = "SELECT * from parts join parts_trolley on parts_trolley.partdesc = parts.partdesc where parts_trolley.trolleyid = 1 ";;
+var tdata = db.Query(tquery);
+var columns = new[]{"PartDesc, PartName, Type, Quantity"};
+var grid =new WebGrid(tdata, rowsPerPage: 50, ajaxUpdateContainerId: "part", columnNames: columns); 
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+             <meta charset="utf-8" />
+        <title>Parts</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheet.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+    <nav class "navbar">
+  <div class="container-fluid">
+        <div class="nav navbar-nav">
+        <a href="#"class="btn" role="button">Orders</a>
+        <a href="#"class="btn" role="button">Packing</a>
+        <a href="#" class="btn" role="button">Delivery</a>
+        <a href="Alert.cshtml"class="btn" role="button">Alerts</a>
+    </ul>
+   </nav>
+  </div>
+
+            <div id="part">
+         @grid.GetHtml(
+    displayHeader:true,
+     tableStyle: "webgrid-table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        selectedRowStyle: "webgrid-selected-row",
+        rowStyle: "webgrid-row-style",
+    columns: grid.Columns(
+        grid.Column("PartDesc"),
+        grid.Column("PartName"),
+        grid.Column("Type"),
+        grid.Column("Quantity"),
+        grid.Column(
+            header:"", 
+            format:@<text>@item.GetSelectLink("Ordered")</text>
+            )
+                 )
+)
+                </div> 
+ 
+     
+    </body>
+</html>
