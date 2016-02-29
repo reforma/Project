@@ -1,8 +1,8 @@
 ﻿@{
      Page.Title = "Parts";
    var db = Database.Open("ETS");
-var tquery = "SELECT * from parts join parts_trolley on parts_trolley.partdesc = parts.partdesc where parts_trolley.trolleyid = 1 ";;
-var tdata = db.Query(tquery);
+var tquery = "SELECT * from parts join parts_trolley on parts_trolley.partdesc = parts.partdesc join trolleys on trolleys.trolleyid = parts_trolley.trolleyid where trolleys.trolleydesc = @0 ";;
+var tdata = db.Query(tquery,UrlData[0]);
 var columns = new[]{"PartDesc, PartName, Type, Quantity"};
 var grid =new WebGrid(tdata, rowsPerPage: 50, ajaxUpdateContainerId: "part", columnNames: columns); 
 }
