@@ -1,0 +1,62 @@
+﻿@{
+
+     var db = Database.Open("ETS");
+     var data = db.Query("Select Typeid,Type from TypeID");
+     var items = data.Select(i => new SelectListItem{
+         Value = i.Typeid.ToString(),
+         Text = i.Type,             
+    });
+ }
+}
+
+
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Electric Trolley Spares Stock Control </title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheet.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        </head>
+
+    <nav class "navbar">
+  <div class="container-fluid">
+        <div class="nav navbar-nav">
+        <a href="#"class="btn" role="button">Orders</a>
+        <a href="#" class="btn" role="button">Delivery</a>
+        <a href="alert.cshtml"class="btn" role="button">Alerts</a>
+    </ul>
+   </nav>
+  </div>
+  <div id="bdy">
+<h1 class="text-center">Delivery</h1>
+  </div> 
+    
+    <div id="form">
+        <form method="post">
+        <fieldset>
+        <legend>Delivery</legend>
+
+            Part Type: @Html.DropDownList("TypeID","Select One",items) <br />
+
+            <p><input type="submit" name="buttonsubmit" value="Save"/></p>
+        
+        </fieldset>
+        
+        
+        </form>
+    
+    
+    
+    
+    
+    </div>   
+    </body>
+
+</html>
