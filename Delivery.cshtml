@@ -1,4 +1,10 @@
 ﻿@{
+@*protected void Page_Load(object sender, EventArgs e)
+{
+   if(!IsPostBack)
+   {
+      // all statements*@
+  
 
      var db = Database.Open("ETS");
      var data = db.Query("Select Typeid,Type from TypeID");
@@ -6,8 +12,14 @@
          Value = i.Typeid.ToString(),
          Text = i.Type,             
     });
+    var Ddata = db.Query("Select PartDesc from Parts");
+    var Desc = Ddata.Select(i => new SelectListItem{
+        Value = i.PartDesc.ToString(),
+        Text = i.PartDesc,
+        });
  }
 }
+
 
 
 
@@ -43,7 +55,9 @@
         <fieldset>
         <legend>Delivery</legend>
 
-            Part Type: @Html.DropDownList("TypeID","Select One",items) <br />
+            <table>
+            Part Type: @Html.DropDownList("TypeID","Select One",items) Description:@Html.DropDownList("PartDesc","Select Part Code",Desc)
+            </table>
 
             <p><input type="submit" name="buttonsubmit" value="Save"/></p>
         
