@@ -19,7 +19,7 @@ var grid =new WebGrid(data, rowsPerPage: 50, ajaxUpdateContainerId: "grid", colu
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         </head>
-
+    
     <nav class "navbar">
   <div class="container-fluid">
         <div class="nav navbar-nav">
@@ -43,7 +43,6 @@ var grid =new WebGrid(data, rowsPerPage: 50, ajaxUpdateContainerId: "grid", colu
         selectedRowStyle: "webgrid-selected-row",
         rowStyle: "webgrid-row-style",
     columns: grid.Columns(
-        grid.Column("Partid"),
         grid.Column("partdesc"),
         grid.Column("PartName"),
         grid.Column("Type"),
