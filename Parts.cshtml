@@ -48,7 +48,7 @@ var grid =new WebGrid(tdata, rowsPerPage: 50, ajaxUpdateContainerId: "part", col
         grid.Column("Quantity"),
         grid.Column(
             header:"",
-            type:button, 
+           
             format:@<text>@item.GetSelectLink("Ordered")</text>
 
             )
