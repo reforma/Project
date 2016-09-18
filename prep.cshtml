@@ -1,0 +1,23 @@
+﻿@{
+    var db = Database.Open("ETS");
+    var data = db.Query("SELECT type, partdesc FROM parts order by type");
+   
+    var categories = data.Select(item => new SelectListItem {
+        Value = item.type.ToString(), 
+        Text = item.type + " " + item.partdesc
+    });
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cascading Dropdown Lists</title>
+    </head>
+    <body>
+        <div>
+            @Html.DropDownList("categoryId", "-- Select Part --", categories)
+        </div>
+       </body>
+</html>

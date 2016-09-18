@@ -1,4 +1,12 @@
-﻿
+﻿@{
+    var db = Database.Open("ETS");
+    var data = db.Query("SELECT type, partdesc FROM parts order by type");
+   
+    var categories = data.Select(item => new SelectListItem {
+        Value = item.type.ToString(), 
+        Text = item.type + " " + item.partdesc
+    });
+}
 
 <html lang="en">
 
@@ -135,9 +143,9 @@
 
  
 
-      valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+    <!--  valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
 
-   valid = valid && checkRegexp( email, /^([0-9_\s])+$/i, "Quantity Delivered must be a number" );
+  --> valid = valid && checkRegexp( email, /^([0-9_\s])+$/i, "Quantity Delivered must be a number" );
 
       if ( valid ) {
 
@@ -247,11 +255,10 @@
 
       <label for="name">Item</label>
 <select
-      name="name" id="name" value= class="text ui-widget-content ui-corner-all">
-  <option value= "default"></option>
-  <option value ="volvo">Volvo</option>
-  
-      </select>
+      name="name" id="name" class="text ui-widget-content ui-corner-all">
+   @Html.DropDownList("categoryId", "-- Select Part --", categories)
+  </select>
+      
      
     <br></br>
    

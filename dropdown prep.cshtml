@@ -1,0 +1,13 @@
+﻿<?php
+mysql_connect('localhost','root',' ');
+mysql_select_db('ETS');
+
+$sql = "Select Type, partdesc from parts";
+$result = mysql_query($sql);
+
+echo "select type = 'type1'>";
+while ($row = mysql_fetch_array ($result)){
+echo "option value ='" . $row['type'] . "'>" . $row['type'] . "</option>";
+}
+echo "</select>";
+?>
